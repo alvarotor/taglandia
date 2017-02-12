@@ -1,15 +1,48 @@
 {
   "rules": {
-    ".read": "true",
     "tags": {
+      ".read": true,
       ".validate": "newData.hasChildren(['en'])",
       "en": {
-        ".write": "true",
         "$tag": {
           ".validate": "newData.hasChildren(['name'])",
           "name": {
-            ".write": "true",
-            ".validate": "auth !== null && newData.isString() && !root.child('tagsList').child('en').child(newData.val()).exists()"
+            ".write": "newData.isString()",
+            ".validate": "auth !== null && !root.child('tagsList').child('en').child(newData.val()).exists()"
+          }
+        }
+      }
+    },
+    "elements": {
+      ".read": true,
+      ".validate": "newData.hasChildren(['en'])",
+      "en": {
+        ".write": true,
+        "$element": {
+          ".write": true,
+          ".validate": "auth !== null && newData.hasChildren(['description', 'expire', 'name', 'pictureURL', 'user', 'tags'])",
+          "user": {
+            ".validate": "newData.isString()"
+          },
+          "description": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "expire": {
+            ".validate": "newData.isString()"
+          },
+          "name": {
+            ".validate": "newData.isString()"
+          },
+          "pictureURL": {
+            ".validate": "newData.isString()"
+          },
+          "tags": {
+            "$tag": {
+              ".validate": "root.child('tags').child('en').child($tag).exists()"
+            }
+          },
+          "$other": {
+            ".validate": false
           }
         }
       }
