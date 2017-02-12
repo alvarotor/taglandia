@@ -1,0 +1,18 @@
+{
+  "rules": {
+    ".read": "true",
+    "tags": {
+      ".validate": "newData.hasChildren(['en'])",
+      "en": {
+        ".write": "true",
+        "$tag": {
+          ".validate": "newData.hasChildren(['name'])",
+          "name": {
+            ".write": "true",
+            ".validate": "auth !== null && newData.isString() && !root.child('tagsList').child('en').child(newData.val()).exists()"
+          }
+        }
+      }
+    }
+  }
+}

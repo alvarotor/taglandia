@@ -1,0 +1,55 @@
+.selectize-control.multi .selectize-input [data-value] {
+    background-color: #FFDA5B;
+    background-image: linear-gradient(to bottom, #FFE485, #FFDA5B);
+}
+
+.selectize-control.multi .selectize-input > div {
+    background: #FFE485;
+    border: 1px solid #fed136;
+}
+
+.tag-links a {
+	background-color: #FEA42D;
+	border-radius: 0 2px 2px 0;
+	color: #fff;
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1.2727272727;
+	margin: 2px 4px 2px 10px;
+	padding: 3px 7px;
+	position: relative;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+	.tag-links a:before {
+		border-top: 10px solid transparent;
+		border-right: 8px solid #FEA42D;
+		border-bottom: 10px solid transparent;
+		content: "";
+		height: 0;
+		position: absolute;
+		top: 0;
+		left: -8px;
+		width: 0;
+	}
+
+	.tag-links a:after {
+		background-color: #fff;
+		border-radius: 50%;
+		content: "";
+		height: 4px;
+		position: absolute;
+		top: 8px;
+		left: -2px;
+		width: 4px;
+	}
+
+	.tag-links a:hover {
+		background-color: #CB780D;
+	}
+
+		.tag-links a:hover:before {
+			border-right-color: #CB780D;
+		}
