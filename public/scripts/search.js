@@ -19,10 +19,10 @@ var searcher = new Vue({
                             db.ref("elements/en/" + key).once("value", function (obj) {
                                 var keyObj = obj.key;
                                 var obj = obj.val();
-                                if (!moment().utc().isBefore(moment(obj.expire, format))) {
-                                    db.ref("elements/en/" + keyObj).remove();
-                                    db.ref("tags/en/" + boxItem.split("###")[0] + "/elements/" + keyObj).remove();
-                                }
+                                if (!moment().utc().isBefore(moment(obj.expire, format)))
+                                    db.ref("elements/en/" + keyObj).remove(function () {
+                                        db.ref("tags/en/" + boxItem.split("###")[0] + "/elements/" + keyObj).remove();
+                                    });
                                 else {
                                     var sTags = "";
                                     for (var prop in obj.tags)

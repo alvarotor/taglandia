@@ -55,7 +55,7 @@ var tagboxConfAdd = {
                 var newTagKey = firebase.database().ref().child("tags/en/").push().key;
                 var newTag = {};
                 newTag["tags/en/" + newTagKey] = { name: input };
-                newTag["tagsList/en/" + input] = true;
+                newTag["tagsList/en/" + input.toLowerCase()] = true;
                 firebase.database().ref().update(newTag, callback({ value: newTagKey, text: input }));
             };
         };

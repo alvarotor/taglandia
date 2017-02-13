@@ -1,26 +1,34 @@
 {
   "rules": {
+    ".read": true,
     "tags": {
-      ".read": true,
-      ".validate": "newData.hasChildren(['en'])",
       "en": {
         "$tag": {
+          ".write": "auth !== null",
           ".validate": "newData.hasChildren(['name'])",
           "name": {
-            ".write": "newData.isString()",
-            ".validate": "auth !== null && !root.child('tagsList').child('en').child(newData.val()).exists()"
+            ".write": "!root.child('tagsList').child('en').child(newData.val()).exists()"
+          },
+          "elements": {
+            "$elements": {
+              ".write": "root.child('elements').child('en').child($elements).exists()"
+            }
           }
         }
       }
     },
-    "elements": {
-      ".read": true,
-      ".validate": "newData.hasChildren(['en'])",
+    "tagsList": {
       "en": {
-        ".write": true,
+        "$tag": {
+          ".write": "auth !== null"
+        }
+      }
+    },
+    "elements": {
+      "en": {
         "$element": {
-          ".write": true,
-          ".validate": "auth !== null && newData.hasChildren(['description', 'expire', 'name', 'pictureURL', 'user', 'tags'])",
+          ".write": "auth !== null",
+          ".validate": "newData.hasChildren(['description', 'expire', 'name', 'pictureURL', 'user', 'tags'])",
           "user": {
             ".validate": "newData.isString()"
           },
@@ -38,6 +46,7 @@
           },
           "tags": {
             "$tag": {
+              ".write": true,
               ".validate": "root.child('tags').child('en').child($tag).exists()"
             }
           },
